@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_view_content_margin">10dp</dimen>
+
+    <dimen name="margin_small">12dp</dimen>
+    <dimen name="margin_medium">24dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+
+    <dimen name="small_font">14sp</dimen>
+    <dimen name="medium_font">20sp</dimen>
+    <dimen name="header_font">24sp</dimen>
+</resources>

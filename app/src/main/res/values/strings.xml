@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CodingAssessment</string>
+    <string name="author_header">Author: </string>
+    <string name="commit_header">Commit:</string>
+    <string name="commit_message_header">Commit Message:</string>
+    <string name="application_header">Recent Commits</string>
+    <string name="github_url">(https://api.github.com/repos/concourse/pipelines/commits)</string>
+    <string name="error_message">Something went wrong could not connect to server</string>
 </resources>

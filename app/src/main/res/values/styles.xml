@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Header Style -->
+    <style name="cardViewTextFont" parent="TextAppearance.AppCompat.Headline">
+        <item name="android:fontFamily">sans-serif-blackk</item>
+    </style>
+
 </resources>

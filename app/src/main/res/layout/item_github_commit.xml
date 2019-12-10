@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="commitListItemViewModel"
+            type="com.abiramikrishnamoorthy.coding.assessment.viewmodel.GitHubCommitListItemViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="4dp"
+            app:cardCornerRadius="6dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            android:backgroundTint="@color/colorWhite">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/user_name_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/card_view_content_margin"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:text="@string/author_header"
+                    android:textSize="@dimen/small_font"
+                    android:textAppearance="@style/cardViewTextFont"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left_card" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/card_view_content_margin"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:text="@{commitListItemViewModel.gitAuthor}"
+                    android:textSize="@dimen/small_font"
+                    android:textAppearance="@style/cardViewTextFont"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/user_name_text"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right_card"
+                    tools:text="@string/author_header"/>
+
+                <TextView
+                    android:id="@+id/commit_hash"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_margin="@dimen/card_view_content_margin"
+                    android:textAppearance="@style/cardViewTextFont"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_left_card"
+                    app:layout_constraintTop_toBottomOf="@+id/user_name"
+                    android:text="@string/commit_header"
+                    android:textSize="@dimen/small_font"/>
+
+                <TextView
+                    android:id="@+id/commit_hash_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/card_view_content_margin"
+                    android:textAppearance="@style/cardViewTextFont"
+                    android:maxLines="1"
+                    app:layout_constraintStart_toEndOf="@+id/commit_hash"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right_card"
+                    app:layout_constraintTop_toBottomOf="@+id/user_name"
+                    android:text="@{commitListItemViewModel.gitCommitHash}"
+                    android:textSize="@dimen/small_font"
+                    tools:text="@string/commit_header"/>
+
+                <TextView
+                    android:id="@+id/commit_message_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/cardViewTextFont"
+                    android:textSize="@dimen/small_font"
+                    android:layout_margin="@dimen/card_view_content_margin"
+                    android:textStyle="bold"
+                    android:text="@string/commit_message_header"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left_card"
+                    app:layout_constraintTop_toBottomOf="@id/commit_hash" />
+
+                <TextView
+                    android:id="@+id/commit_message"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/cardViewTextFont"
+                    android:textSize="@dimen/small_font"
+                    android:layout_margin="@dimen/card_view_content_margin"
+                    android:maxLines="4"
+                    android:text="@{commitListItemViewModel.gitCommitMessage}"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left_card"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right_card"
+                    app:layout_constraintTop_toBottomOf="@id/commit_message_text"
+                    tools:text="Commit Message Message Message Message Message MessageMessageMessageMessageMessageMessageMessageMessageMessage Commit Message Message Message Message Message MessageMessageMessageMessageMessageMessageMessageMessageMessage Commit Message Message Message Message Message MessageMessageMessageMessageMessageMessageMessageMessageMessage Commit Message Message Message Message Message MessageMessageMessageMessageMessageMessageMessageMessageMessage Commit Message Message Message Message Message MessageMessageMessageMessageMessageMessageMessageMessageMessage "/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_left_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.02"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_right_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.90"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
