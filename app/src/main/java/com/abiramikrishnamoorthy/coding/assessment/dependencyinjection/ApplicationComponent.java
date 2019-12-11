@@ -4,6 +4,8 @@ package com.abiramikrishnamoorthy.coding.assessment.dependencyinjection;
 import com.abiramikrishnamoorthy.coding.assessment.application.GitHubCommitListApplication;
 import com.abiramikrishnamoorthy.coding.assessment.module.ActivityModule;
 import com.abiramikrishnamoorthy.coding.assessment.module.ApplicationModule;
+import com.abiramikrishnamoorthy.coding.assessment.module.ProviderModule;
+import com.abiramikrishnamoorthy.coding.assessment.module.ServiceModule;
 
 import javax.inject.Singleton;
 
@@ -14,7 +16,9 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         ApplicationModule.class,
         ActivityModule.class,
-        AndroidSupportInjectionModule.class
+        AndroidSupportInjectionModule.class,
+        ProviderModule.class,
+        ServiceModule.class
 })
 
 public interface ApplicationComponent {
