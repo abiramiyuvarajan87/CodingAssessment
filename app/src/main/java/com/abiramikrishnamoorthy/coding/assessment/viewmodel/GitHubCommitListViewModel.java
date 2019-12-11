@@ -1,5 +1,8 @@
 package com.abiramikrishnamoorthy.coding.assessment.viewmodel;
 
+import android.util.Log;
+
+import androidx.databinding.ObservableBoolean;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
@@ -19,6 +22,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class GitHubCommitListViewModel extends ViewModel implements LifecycleObserver {
 
     public final GitHubCommitListAdapter adapter = new GitHubCommitListAdapter();
+    public final ObservableBoolean isError = new ObservableBoolean(false);
 
     private final GitCommitListProvider gitCommitListProvider;
 
@@ -31,9 +35,9 @@ public class GitHubCommitListViewModel extends ViewModel implements LifecycleObs
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    public void populateRecyclerView() {
+    public void fetchGitCommitList() {
         lifecycleSubscriptions.add(gitCommitListProvider.getGitCommitList("concourse", "pipelines")
-                .subscribe(this::populateListAdapter, Throwable::printStackTrace));
+                .subscribe(this::populateListAdapter, this::populateError));
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
@@ -42,11 +46,19 @@ public class GitHubCommitListViewModel extends ViewModel implements LifecycleObs
     }
 
     private void populateListAdapter(List<GitCommitListResponse> gitCommitListResponses) {
+        isError.set(false);
         gitCommitListResponsesList.clear();
         gitCommitListResponses.forEach(gitCommitListResponse -> gitCommitListResponsesList.add(new GitHubCommitListItemViewModel(
                 gitCommitListResponse.getCommitAuthor().getAuthorName(),
                 gitCommitListResponse.getCommitHash(),
                 gitCommitListResponse.getCommit().getGitCommitMessage())));
         adapter.setGitHubCommitListItemViewModelList(gitCommitListResponsesList);
+    }
+
+    private void populateError(Throwable throwable) {
+        Log.e("Exception", throwable.getMessage());
+        throwable.printStackTrace();
+        isError.set(true);
+        gitCommitListResponsesList.clear();
     }
 }

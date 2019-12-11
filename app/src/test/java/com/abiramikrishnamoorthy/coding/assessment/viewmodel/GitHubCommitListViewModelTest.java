@@ -42,9 +42,21 @@ public class GitHubCommitListViewModelTest {
         List<GitCommitListResponse> gitCommitListResponse = populateCommitListResponse();
         when(gitCommitListProvider.getGitCommitList("concourse", "pipelines")).thenReturn(Single.just(gitCommitListResponse));
 
-        subject.populateRecyclerView();
+        subject.fetchGitCommitList();
 
         assertEquals(subject.gitCommitListResponsesList.size(),1);
+        assertFalse(subject.isError.get());
+    }
+
+    @Test
+    public void fetchGitCommitList_gitCommitListReturnsError_setsErrorTextVisibilityToTrue() {
+        Throwable throwable = new Throwable("Exception");
+        when(gitCommitListProvider.getGitCommitList("concourse", "pipelines")).thenReturn(Single.error(throwable));
+
+        subject.fetchGitCommitList();
+
+        assertTrue(subject.isError.get());
+        assertEquals(subject.gitCommitListResponsesList.size(),0);
     }
 
     @Test
